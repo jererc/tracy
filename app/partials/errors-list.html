@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="accordion" id="errors-accordion">
+        <div ng-repeat="error in errors" class="accordion-group">
+
+            <!-- Header -->
+            <div class="accordion-heading">
+                <span class="text-center label item-status" ng-class="getStatusClass(error)">{{error.levelname | lowercase}}</span>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#errors-accordion" href="#{{error._id}}">{{error.name}}</a>
+                <span class="label pull-right">{{error.count}}</span>
+            </div>
+
+            <!-- Content -->
+            <div id="{{error._id}}" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <button ng-click="removeErrors(error._id)" class="btn btn-danger pull-right" type="button">Remove</button>
+
+                    <ul class="unstyled">
+                        <li><strong>Begin:</strong> {{error.begin | ifDate}}</li>
+                        <li><strong>End:</strong> {{error.end | ifDate}}</li>
+                        <li><strong>File:</strong> {{error.pathname}}</li>
+                        <li><strong>Func:</strong> {{error.funcName}} ({{error.lineno}})</li>
+                    </ul>
+
+                    <ul class="unstyled">
+                        <li ng-repeat="msg in error.msgs">
+                            <span class="label pull-right">{{msg[1]}}</span>
+                            <pre><small>{{msg[0]}}</small></pre>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

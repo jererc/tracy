@@ -1,0 +1,39 @@
+<div class="container">
+
+    <div class="well">
+        <ul class="unstyled">
+            <li><strong>Started:</strong> {{testsInfo.started | ifDate}}</li>
+            <li><strong>Finished:</strong> {{testsInfo.finished | ifDate}}</li>
+            <li><strong>Tests run:</strong> {{testsInfo.tests_run}}</li>
+            <li><strong>Errors:</strong> {{testsInfo.errors}}</li>
+            <li><strong>Failures:</strong> {{testsInfo.failures}}</li>
+        </ul>
+        <button ng-click="resetTests()" class="btn btn-warning" type="button" ng-class="{disabled: !testsInfo.finished}">Reset tests</button>
+    </div>
+
+    <div class="accordion" id="tests-accordion">
+        <div ng-repeat="test in tests" class="accordion-group">
+
+            <!-- Header -->
+            <div class="accordion-heading">
+                <span class="text-center label item-status" ng-class="getStatusClass(test)">{{test.type | lowercase}}</span>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#tests-accordion" href="#{{test._id}}">{{test.name}}</a>
+                <span class="label pull-right">{{test.tries}}</span>
+            </div>
+
+            <!-- Content -->
+            <div id="{{test._id}}" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <ul class="unstyled">
+                        <li><strong>Created:</strong> {{test.created | ifDate}}</li>
+                        <li><strong>File:</strong> {{test.file}}</li>
+                    </ul>
+                    <div>
+                        <pre><small>{{test.traceback}}</small></pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

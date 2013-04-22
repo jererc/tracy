@@ -1,0 +1,20 @@
+<div class="container">
+
+    <div class="accordion" id="logs-accordion">
+        <div ng-repeat="log in logs" class="accordion-group">
+
+            <!-- Header -->
+            <div class="accordion-heading">
+                <a ng-click="getLog(log.file)" class="accordion-toggle" data-toggle="collapse" data-parent="#logs-accordion" href="#{{log.name}}">{{log.file}}</a>
+            </div>
+
+            <!-- Content -->
+            <div id="{{log.name}}" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <pre><small>{{logData}}</small></pre>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="container">
+
+    <div ng-show="!!!apiStatus" class="alert alert-error">
+        Failed to connect to the API
+    </div>
+
+    <!-- API -->
+    <div class="well">
+        <h4>API</h4>
+
+        <form class="form-horizontal" name="updateApiUrlForm">
+            <div class="control-group">
+                <label class="control-label" for="input-api-endpoint">URL</label>
+                <div class="controls">
+                    <input ng-model="apiUrl" type="text" id="input-api-endpoint" required>
+                    <button ng-click="checkApi()" ng-disabled="updateApiUrlForm.$invalid" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div ng-show="!!apiStatus">
+        <form class="form-horizontal" name="updateSettingsForm">
+
+            <!-- Tests -->
+            <div class="well">
+                <h4>Tests</h4>
+
+                <!-- Files -->
+                <div class="control-group">
+                    <label class="control-label">Tests files</label>
+                    <div class="controls controls-row">
+                        <div ng-repeat="opt in settings.tests_files" class="input-append">
+                            <input ng-model="opt.val" type="text">
+                            <a href="" ng-click="settings.tests_files.splice($index, 1)" class="add-on"><i class="icon-remove"></i></a>
+                        </div>
+                        <a class="btn" href="" ng-click="settings.tests_files.push({})"><i class="icon-plus"></i></a>
+                    </div>
+                </div>
+
+                <!-- Delta -->
+                <div class="control-group">
+                    <label class="control-label" for="tests-delta">Tests delta</label>
+                    <div class="controls">
+                        <input ng-model="settings.tests_delta" class="span1" type="number" min="1" max="9999" id="tests-delta"><span class="add-on"> hours</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Logs -->
+            <div class="well">
+                <h4>Logs</h4>
+
+                <!-- Paths -->
+                <div class="control-group">
+                    <label class="control-label">Logs paths</label>
+                    <div class="controls controls-row">
+                        <div ng-repeat="opt in settings.logs_paths" class="input-append">
+                            <input ng-model="opt.val" type="text">
+                            <a href="" ng-click="settings.logs_paths.splice($index, 1)" class="add-on"><i class="icon-remove"></i></a>
+                        </div>
+                        <a class="btn" href="" ng-click="settings.logs_paths.push({})"><i class="icon-plus"></i></a>
+                    </div>
+                </div>
+
+                <!-- Line regex -->
+                <div class="control-group">
+                    <label class="control-label" for="logs-line-pattern">Logs line regex</label>
+                    <div class="controls controls-row">
+                        <input ng-model="settings.logs_line_pattern" type="text" id="logs-line-pattern">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="well">
+                <button class="btn btn-warning">Reset</button>
+                <button ng-click="updateSettings()" ng-disabled="updateSettingsForm.$invalid" class="btn btn-primary">Save</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
