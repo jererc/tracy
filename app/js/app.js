@@ -1,8 +1,6 @@
 'use strict';
 
-/* App Module */
-
-angular.module('tracyApp', ['tracyServices', 'tracyDirectives', 'tracyFilters']).
+angular.module('tracyApp', ['tracyServices', 'tracyDirectives', 'tracyFilters', 'angularUtils']).
     config(['$routeProvider', function($routeProvider) {
     $routeProvider.
         when('/', {redirectTo: '/errors'}).

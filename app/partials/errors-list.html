@@ -4,7 +4,7 @@
 
             <!-- Header -->
             <div class="accordion-heading">
-                <span class="text-center label item-status" ng-class="getStatusClass(error)">{{error.levelname | lowercase}}</span>
+                <span class="text-center label item-status" ng-class="statusInfo[!!!error.exception].labelClass">{{statusInfo[!!!error.exception].name | lowercase}}</span>
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#errors-accordion" href="#{{error._id}}">{{error.name}}</a>
                 <span class="label pull-right">{{error.count}}</span>
             </div>

@@ -75,6 +75,11 @@ function ErrorsListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSv
 
     $scope.errors = [];
 
+    $scope.statusInfo = {
+        true: {name: 'error', labelClass: 'label-warning'},
+        false: {name: 'exception', labelClass: 'label-important'},
+    };
+
     var active = true;
     var cacheDelta = 10000;
     var updateTimeout;
@@ -98,17 +103,6 @@ function ErrorsListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSv
                 });
         }
     }
-
-    $scope.getStatusClass = function(error) {
-        switch (!!error.exception) {
-            case true:
-                return 'label-important';
-                break;
-            default:
-                return 'label-warning';
-                break;
-        }
-    };
 
     $scope.removeErrors = function(id) {
         apiSvc.removeErrors(id).
@@ -140,6 +134,11 @@ function TestsListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc
 
     $scope.tests = [];
     $scope.testsInfo = {};
+
+    $scope.statusInfo = {
+        true: {labelClass: 'label-warning'},
+        false: {labelClass: 'label-important'},
+    };
 
     var active = true;
     var cacheDelta = 10000;
@@ -183,17 +182,6 @@ function TestsListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc
                 });
         }
     }
-
-    $scope.getStatusClass = function(test) {
-        switch (test.type) {
-            case 'failure':
-                return 'label-important';
-                break;
-            default:
-                return 'label-warning';
-                break;
-        }
-    };
 
     $scope.resetTests = function() {
         apiSvc.resetTests().

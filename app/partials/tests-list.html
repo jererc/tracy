@@ -16,7 +16,7 @@
 
             <!-- Header -->
             <div class="accordion-heading">
-                <span class="text-center label item-status" ng-class="getStatusClass(test)">{{test.type | lowercase}}</span>
+                <span class="text-center label item-status" ng-class="statusInfo[test.type != 'failure'].labelClass">{{test.type | lowercase}}</span>
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#tests-accordion" href="#{{test._id}}">{{test.name}}</a>
                 <span class="label pull-right">{{test.tries}}</span>
             </div>
