@@ -24,35 +24,35 @@
 
         // Errors
         this.listErrors = function() {
-            return $http.get(this.getUrl() + '/errors/list');
+            return $http.get(this.getUrl() + '/error/list');
         };
 
-        this.removeErrors = function(id) {
-            return $http.post(this.getUrl() + '/errors/remove',
-                {id: id});
+        this.removeError = function(id) {
+            return $http.post(this.getUrl() + '/error/remove',
+                    {id: id});
         };
 
         // Tests
         this.listTests = function() {
-            return $http.get(this.getUrl() + '/tests/list');
+            return $http.get(this.getUrl() + '/test/list');
         };
 
         this.getTestsInfo = function() {
-            return $http.get(this.getUrl() + '/tests/info');
+            return $http.get(this.getUrl() + '/test/info');
         };
 
         this.resetTests = function() {
-            return $http.post(this.getUrl() + '/tests/reset');
+            return $http.post(this.getUrl() + '/test/reset');
         };
 
         // Logs
         this.listLogs = function() {
-            return $http.get(this.getUrl() + '/logs/list');
+            return $http.get(this.getUrl() + '/log/list');
         };
 
         this.getLog = function(file) {
-            return $http.post(this.getUrl() + '/logs/get',
-                {file: file});
+            return $http.post(this.getUrl() + '/log/get',
+                    {file: file});
         };
 
         // Settings

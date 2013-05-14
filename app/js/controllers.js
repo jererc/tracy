@@ -4,7 +4,7 @@
 //
 // Main
 //
-function MainCtrl($rootScope, $scope, $location, apiSvc, eventSvc, utilsSvc) {
+function MainCtrl($rootScope, $scope, $location, rootScopeSvc, apiSvc, eventSvc, utilsSvc) {
 
     $rootScope.apiStatus = false;
 
@@ -38,27 +38,6 @@ function MainCtrl($rootScope, $scope, $location, apiSvc, eventSvc, utilsSvc) {
         }
     }
 
-    $rootScope.isMenuActive = function(path) {
-        if ($location.path().substr(0, path.length) == path) {
-            return 'active';
-        }
-        return '';
-    };
-
-    $rootScope.inArray = function(value, array) {
-        if (!array) {
-            return -1;
-        }
-        return utilsSvc.getIndex(value, array) != -1;
-    };
-
-    $rootScope.exists = function(val) {
-        if (angular.isArray(val)) {
-            return !!val.length;
-        }
-        return !!val;
-    };
-
     $rootScope.$on('checkApi', function(event, args) {
         checkApi((!!args) ? args.url : null);
     });
@@ -71,7 +50,7 @@ function MainCtrl($rootScope, $scope, $location, apiSvc, eventSvc, utilsSvc) {
 //
 // Errors list
 //
-function ErrorsListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc) {
+function ErrorListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc) {
 
     $scope.errors = [];
 
@@ -104,8 +83,8 @@ function ErrorsListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSv
         }
     }
 
-    $scope.removeErrors = function(id) {
-        apiSvc.removeErrors(id).
+    $scope.removeError = function(id) {
+        apiSvc.removeError(id).
             success(function(data) {
                 if (data.error) {
                     console.error('failed to remove errors:', data.error);
@@ -130,7 +109,7 @@ function ErrorsListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSv
 //
 // Tests list
 //
-function TestsListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc) {
+function TestListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc) {
 
     $scope.tests = [];
     $scope.testsInfo = {};
@@ -206,7 +185,7 @@ function TestsListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc
 //
 // Logs list
 //
-function LogsListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc) {
+function LogListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc) {
 
     $scope.logs = [];
     $scope.logFile = null;
