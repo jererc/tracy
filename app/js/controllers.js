@@ -51,8 +51,9 @@ function MainCtrl($rootScope, $scope, $location, rootScopeSvc, apiSvc, eventSvc,
 //
 function ErrorListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc) {
 
-    $scope.errors = [];
+    $rootScope.hasResult = true;
 
+    $scope.errors = [];
     $scope.statusInfo = {
         true: {name: 'error', labelClass: 'label-warning'},
         false: {name: 'exception', labelClass: 'label-important'},
@@ -77,6 +78,7 @@ function ErrorListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc
                 }).
                 success(function(data) {
                     utilsSvc.updateList($scope.errors, data.result, '_id');
+                    $rootScope.hasResult = data.result.length > 0 ? true : false;
                     updateTimeout = $timeout(updateErrors, cacheDelta);
                 });
         }
@@ -110,6 +112,8 @@ function ErrorListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc
 //
 function TestListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc) {
 
+    $rootScope.hasResult = true;
+
     $scope.tests = [];
     $scope.testsInfo = {};
 
@@ -137,6 +141,7 @@ function TestListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc)
                 }).
                 success(function(data) {
                     utilsSvc.updateList($scope.tests, data.result, '_id');
+                    $rootScope.hasResult = data.result.length > 0 ? true : false;
                     updateTimeout = $timeout(updateTests, cacheDelta);
                 });
         }
@@ -186,6 +191,8 @@ function TestListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc)
 //
 function LogListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc) {
 
+    $rootScope.hasResult = true;
+
     $scope.logs = [];
     $scope.logFile = null;
     $scope.logData = '';
@@ -209,6 +216,7 @@ function LogListCtrl($rootScope, $scope, $timeout, $location, apiSvc, utilsSvc) 
                 }).
                 success(function(data) {
                     utilsSvc.updateList($scope.logs, data.result, 'name');
+                    $rootScope.hasResult = data.result.length > 0 ? true : false;
                     updateTimeout = $timeout(updateLogs, cacheDelta);
                 });
         }

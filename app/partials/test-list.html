@@ -11,6 +11,8 @@
         <button ng-click="resetTests()" class="btn btn-warning" type="button" ng-class="{disabled: !testsInfo.finished}">Reset tests</button>
     </div>
 
+    <div ng-show="!hasResult">No result</div>
+
     <div class="accordion" id="tests-accordion">
         <div ng-repeat="test in tests" class="accordion-group">
 
