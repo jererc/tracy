@@ -15,8 +15,6 @@
             <!-- Content -->
             <div id="{{error._id}}" class="accordion-body collapse">
                 <div class="accordion-inner">
-                    <button ng-click="removeError(error._id)" class="btn btn-danger pull-right" type="button">Remove</button>
-
                     <ul class="unstyled">
                         <li><strong>Begin:</strong> {{error.begin | ifDate}}</li>
                         <li><strong>End:</strong> {{error.end | ifDate}}</li>
@@ -24,6 +22,8 @@
                         <li><strong>Func:</strong> {{error.funcName}} ({{error.lineno}})</li>
                         <li ng-show="!!error.exception"><strong>Message:</strong> {{error.message}}</li>
                     </ul>
+
+                    <p><button ng-click="removeError(error._id)" class="btn btn-danger" type="button">Remove</button></p>
 
                     <ul class="unstyled">
                         <li ng-repeat="msg in error.msgs">
