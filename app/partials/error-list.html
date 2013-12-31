@@ -8,7 +8,7 @@
             <!-- Header -->
             <div class="accordion-heading">
                 <span class="text-center label item-status" ng-class="statusInfo[!!!error.exception].labelClass">{{statusInfo[!!!error.exception].name | lowercase}}</span>
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#errors-accordion" href="#{{error._id}}">{{error.name}}</a>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#errors-accordion" href="#{{error._id}}">{{error.name}}: {{error.msg}}</a>
                 <span class="label pull-right">{{error.count}}</span>
             </div>
 
@@ -18,17 +18,14 @@
                     <ul class="unstyled">
                         <li><strong>Begin:</strong> {{error.begin | ifDate}}</li>
                         <li><strong>End:</strong> {{error.end | ifDate}}</li>
-                        <li><strong>File:</strong> {{error.pathname}}</li>
-                        <li><strong>Func:</strong> {{error.funcName}} ({{error.lineno}})</li>
-                        <li ng-show="!!error.exception"><strong>Message:</strong> {{error.message}}</li>
                     </ul>
 
                     <p><button ng-click="removeError(error._id)" class="btn btn-danger" type="button">Remove</button></p>
 
                     <ul class="unstyled">
                         <li ng-repeat="msg in error.msgs">
-                            <span class="label pull-right">{{msg[1]}}</span>
-                            <pre><small>{{msg[0]}}</small></pre>
+                            <span><small>{{msg[0].pathname}}:{{msg[0].funcName}} ({{msg[0].lineno}}) x {{msg[1]}}</small></span>
+                            <pre><small>{{msg[0].message}}</small></pre>
                         </li>
                     </ul>
 
